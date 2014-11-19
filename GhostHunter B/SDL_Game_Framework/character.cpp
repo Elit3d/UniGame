@@ -11,6 +11,7 @@ character::character()
 	setDamageModifier(0.0f);
 	setJumping(false);
 	setFalling(false);
+	setJumpedLast(false);
 }
 
 

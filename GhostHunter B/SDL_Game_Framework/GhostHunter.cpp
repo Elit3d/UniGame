@@ -38,6 +38,8 @@ void GhostHunter::logic()
 
 	onKeyPressed();//get keyboard input
 
+	cout << "Jumpde last: " << mainChar.getJumpedLast() << endl;
+
 	if (mainChar.getJumping() == true)
 	{
 		mainChar.m_spriteImage.set_world_position_y(mainChar.m_spriteImage.get_y() - currentJumpForce + gravity); // location = force of jump - gravity
@@ -49,6 +51,7 @@ void GhostHunter::logic()
 		if (mainChar.m_spriteImage.bb_collision(platform[i].sprite))
 		{
 			mainChar.m_spriteImage.set_world_position_y((float)platform[i].sprite.get_y() - mainChar.m_spriteImage.get_height());
+			mainChar.setJumpedLast(false);
 			mainChar.setJumping(false);
 			mainChar.setFalling(false);
 			currentJumpForce = 0.0f;
@@ -94,10 +97,11 @@ void GhostHunter::onKeyPressed()
 		mainChar.m_spriteImage.set_world_position_x(mainChar.m_spriteImage.get_x() + 5);
 	}
 
-	if (keystates[SDLK_SPACE] && mainChar.getJumping() == false && mainChar.getFalling() == false  && mainChar.jum|| // jump
-		keystates[SDLK_w] && mainChar.getJumping() == false && mainChar.getFalling() == false)
+	if (keystates[SDLK_SPACE] && mainChar.getJumping() == false && mainChar.getFalling() == false  && mainChar.getJumpedLast() == false|| // jump
+		keystates[SDLK_w] && mainChar.getJumping() == false && mainChar.getFalling() == false && mainChar.getJumpedLast() == false)
 	{
 		mainChar.setJumping(true);
+		mainChar.setJumpedLast(true);
 		currentJumpForce = jumpForce;
 	}
 
