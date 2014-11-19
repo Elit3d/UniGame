@@ -53,6 +53,11 @@ void character::setFalling(bool falling)
 	m_falling = falling;
 }
 
+void character::setJumpedLast(bool jumped)
+{
+	m_jumpedLast = jumped;
+}
+
 
 int character::getHealth()
 {
@@ -82,4 +87,9 @@ bool character::getJumping()
 bool character::getFalling()
 {
 	return m_falling;
+}
+
+bool character::getJumpedLast()
+{
+	return m_jumpedLast;
 }

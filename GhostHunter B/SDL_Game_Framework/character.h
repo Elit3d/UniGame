@@ -16,6 +16,7 @@ public:
 	float getDamageModifier(); //return the damage modifier of the player
 	bool getJumping(); //return is the player jumping
 	bool getFalling(); //return is the player falling
+	bool getJumpedLast(); //return if player jumped at last opportunity
 
 	void setSpriteImage(char imagePath[]); //set the image for the sprite
 	void setHealth(int health); //set the health of the player
@@ -24,6 +25,7 @@ public:
 	void setDamageModifier(float damageModifier); //set the damage modifier of the player
 	void setJumping(bool jumping); //set if the player is jumping
 	void setFalling(bool falling); //set if the player is falling
+	void setJumpedLast(bool jumped); //set if player jumped at last opportunity
 
 	AWSprite m_spriteImage; //image to represent sprite
 
@@ -34,5 +36,6 @@ private:
 	float m_damageModifier; //any modifier positive or negative
 	bool m_jumping; //is character jumping
 	bool m_falling; //is character on the way down
+	bool m_jumpedLast; //did the player jump at the last opportunity
 };
 

@@ -26,7 +26,7 @@ void GhostHunter::setup()
 	{
 		
 		platform[i].sprite.setImage("images/platform.png");
-		platform[i].sprite.set_world_position((float)coordinates[i][0], (float)coordinates[i][1]);
+		platform[i].sprite.set_world_position((float)coordinates[i][0], (float)coordinates[i][1]); //get coordinates from array
 	}
 
 	enableKeyRepeat();
@@ -51,6 +51,7 @@ void GhostHunter::logic()
 			mainChar.m_spriteImage.set_world_position_y((float)platform[i].sprite.get_y() - mainChar.m_spriteImage.get_height());
 			mainChar.setJumping(false);
 			mainChar.setFalling(false);
+			currentJumpForce = 0.0f;
 			break;
 		}
 		else
@@ -60,12 +61,11 @@ void GhostHunter::logic()
 		}
 	}
 
-
-
 	if (mainChar.m_spriteImage.get_y() >= height - mainChar.m_spriteImage.get_height())
 	{
 		//if character tries to go off screen at the bottom it will be set at 0 and falling set to false to prevent further attempts
 		mainChar.setJumping(false);
+		currentJumpForce = 0.0f;
 		
 		mainChar.m_spriteImage.set_world_position_y((float)height - mainChar.m_spriteImage.get_height());
 		mainChar.setFalling(false);
@@ -87,14 +87,14 @@ void GhostHunter::onKeyPressed()
 
 	if (keystates[SDLK_a] && mainChar.m_spriteImage.get_x() > 0)
 	{
-		mainChar.m_spriteImage.set_world_position_x(mainChar.m_spriteImage.get_x() - 5);
+		mainChar.m_spriteImage.set_world_position_x(mainChar.m_spriteImage.get_x() - 5); //move left
 	}
-	if (keystates[SDLK_d] && mainChar.m_spriteImage.get_x() < width - mainChar.m_spriteImage.get_width())
+	if (keystates[SDLK_d] && mainChar.m_spriteImage.get_x() < width - mainChar.m_spriteImage.get_width()) //move right
 	{
 		mainChar.m_spriteImage.set_world_position_x(mainChar.m_spriteImage.get_x() + 5);
 	}
 
-	if (keystates[SDLK_SPACE] && mainChar.getJumping() == false && mainChar.getFalling() == false ||
+	if (keystates[SDLK_SPACE] && mainChar.getJumping() == false && mainChar.getFalling() == false  && mainChar.jum|| // jump
 		keystates[SDLK_w] && mainChar.getJumping() == false && mainChar.getFalling() == false)
 	{
 		mainChar.setJumping(true);
@@ -114,7 +114,6 @@ void GhostHunter::onMouseMoved()
 
 void GhostHunter::draw(){
 	mainChar.m_spriteImage.update_everything();
-	//draw items from array (KYLE)
 	for (int i = 0; i < NBR_PLATFORMS; i++)
 	{
 		platform[i].sprite.update_everything();
