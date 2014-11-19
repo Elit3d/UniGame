@@ -16,16 +16,13 @@ public:
 	void logic();
 	void draw();
 
-	void onKeyReleased();
 	void onKeyPressed();
 	void onMouseMoved();
 
 	Uint8 *lastKeyState = SDL_GetKeyState(NULL);
 	
 	// Our method declarations will go here
-	const float gravity = 0.5f;
-	const float fallGravity = 0.5f;
-	float currentFallGravity = 0.0f;
+	const float gravity = 0.5f; //
 	const float jumpForce = 13.0f;
 	float currentJumpForce = 0.0f;
 

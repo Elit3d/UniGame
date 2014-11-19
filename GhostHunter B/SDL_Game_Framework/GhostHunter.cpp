@@ -19,18 +19,14 @@ void GhostHunter::setup()
 	mainChar.m_spriteImage.set_transparent_colour(255, 0, 255);
 	mainChar.m_spriteImage.set_world_position(0.0f,(float)height - mainChar.m_spriteImage.get_height());
 
-	//platform.sprite.setImage("images/platform.png");
-	//platform.sprite.set_world_position(10.0f, 400.0f);
+	float coordinates[NBR_PLATFORMS][2] = { { 50, 600 }, { 50, 450 }, { 600, 600 }, { 600, 450 }, { (width / 2) - 75, 300 },
+											{ 50, 150 }, { 600, 150 } };
 
-	//create an array of platforms with position
-
-	float coordinates[NBR_PLATFORMS] = {};
-
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < NBR_PLATFORMS; i++)
 	{
 		
 		platform[i].sprite.setImage("images/platform.png");
-		platform[i].sprite.set_world_position((float)i * 20.0f, (float)i*i*10.0f);
+		platform[i].sprite.set_world_position((float)coordinates[i][0], (float)coordinates[i][1]);
 	}
 
 	enableKeyRepeat();
@@ -48,15 +44,7 @@ void GhostHunter::logic()
 		currentJumpForce -= gravity; // force of the jump is lessened untit it becomes negative, not how it should be done but it works
 	}
 	
-	/*if (mainChar.m_spriteImage.bb_collision(platform.sprite))
-	{
-		//if in contact with platform set jumping and falling to false (will eventually need to be a for loop for all platforms)
-		mainChar.m_spriteImage.set_world_position_y((float)platform.sprite.get_y() - mainChar.m_spriteImage.get_height());
-		mainChar.setJumping(false);
-		mainChar.setFalling(false);
-	}*/
-
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < NBR_PLATFORMS; i++)
 	{
 		if (mainChar.m_spriteImage.bb_collision(platform[i].sprite))
 		{
@@ -69,7 +57,6 @@ void GhostHunter::logic()
 		{
 			//if not collided then falling is true
 			mainChar.setFalling(true);
-			currentFallGravity = fallGravity;
 		}
 	}
 
@@ -90,14 +77,7 @@ void GhostHunter::logic()
 		mainChar.m_spriteImage.set_world_position_y(mainChar.m_spriteImage.get_y() - currentJumpForce + gravity);
 		
 		currentJumpForce -= gravity;
-	}
-	
-	
-}
-
-void GhostHunter::onKeyReleased()
-{
-
+	}	
 }
 
 void GhostHunter::onKeyPressed()
@@ -135,9 +115,8 @@ void GhostHunter::onMouseMoved()
 void GhostHunter::draw(){
 	mainChar.m_spriteImage.update_everything();
 	//draw items from array (KYLE)
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < NBR_PLATFORMS; i++)
 	{
 		platform[i].sprite.update_everything();
 	}
-	//platform.sprite.update_everything();
 }
