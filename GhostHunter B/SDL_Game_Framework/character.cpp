@@ -5,12 +5,13 @@ using namespace std;
 
 character::character()
 {
-	setHealth(100);
-	setArmor(0);
-	setDamage(5.0f);
-	setDamageModifier(0.0f);
-	setJumping(false);
+	setHealth(100); //player health
+	setArmor(0); //player armor
+	setDamage(5.0f); //player damage
+	setDamageModifier(0.0f); //damage modifier
+	setJumping(false); 
 	setFalling(false);
+	setPoints(0); //player points
 }
 
 
@@ -26,6 +27,11 @@ void character::setSpriteImage(char imagePath[])
 void character::setHealth(int health)
 {
 	m_health = health;
+}
+
+void character::setPoints(int points) //player points
+{
+	m_points = points;
 }
 
 void character::setArmor(int armor)
@@ -53,10 +59,14 @@ void character::setFalling(bool falling)
 	m_falling = falling;
 }
 
-
 int character::getHealth()
 {
 	return m_health;
+}
+
+int character::getPoints() //player points
+{
+	return m_points;
 }
 
 int character::getArmor()

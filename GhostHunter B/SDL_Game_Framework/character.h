@@ -11,6 +11,7 @@ public:
 	AWSprite getSpriteImage();
 	int getHealth();
 	int getArmor();
+	int getPoints();
 	float getDamage();
 	float getDamageModifier();
 	bool getJumping();
@@ -18,6 +19,7 @@ public:
 
 	void setSpriteImage(char imagePath[]);
 	void setHealth(int health);
+	void setPoints(int points);
 	void setArmor(int armor);
 	void setDamage(float damage);
 	void setDamageModifier(float damageModifier);
@@ -29,6 +31,7 @@ public:
 private:
 	int m_health; //character health
 	int m_armor; //character armor
+	int m_points; //player points
 	float m_damage; //base level of damage
 	float m_damageModifier; //any modifier positive or negative
 	bool m_jumping; //is character jumping

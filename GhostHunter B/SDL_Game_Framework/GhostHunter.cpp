@@ -34,6 +34,8 @@ void GhostHunter::setup()
 	}
 
 	enableKeyRepeat();
+	
+	int character::getPoints();
 }
 
 void GhostHunter::logic()
@@ -140,4 +142,9 @@ void GhostHunter::draw(){
 		platform[i].sprite.update_everything();
 	}
 	//platform.sprite.update_everything();
+
+	int px;
+	int py = height - 20;
+	print("Points ", 20, py, WHITE);
+	print(, px, py, WHITE);
 }
