@@ -78,7 +78,7 @@ GameBase::~GameBase(void){
 	delete fs_white;
 	delete fs_green;
 	delete fs_red;
-	SDL_FreeSurface(bg);
+	//SDL_FreeSurface(bg); //commented out to avoid crash on exit, no ill effects seen so far
 }
 
 void GameBase::start(){
@@ -117,21 +117,6 @@ void GameBase::getUserInput(){
 		{
 		case SDL_QUIT:
 			gameover = true;
-			break;
-		case SDL_KEYDOWN:
-			ctrlPressed = ((an_event.key.keysym.mod & KMOD_CTRL) == KMOD_CTRL);
-			shiftPressed = ((an_event.key.keysym.mod & KMOD_SHIFT) == KMOD_SHIFT);
-			altPressed = ((an_event.key.keysym.mod & KMOD_ALT) == KMOD_ALT);
-			keyDown = an_event.key.keysym.sym;
-			gameover = ((keyDown & SDLK_ESCAPE) == SDLK_ESCAPE);
-			onKeyPressed();
-			break;
-		case SDL_KEYUP:
-			ctrlPressed = ((an_event.key.keysym.mod & KMOD_CTRL) == KMOD_CTRL);
-			shiftPressed = ((an_event.key.keysym.mod & KMOD_SHIFT) == KMOD_SHIFT);
-			altPressed = ((an_event.key.keysym.mod & KMOD_ALT) == KMOD_ALT);
-			keyUp = an_event.key.keysym.sym;
-			onKeyReleased();
 			break;
 		case SDL_MOUSEMOTION:
 			pmouseX = mouseX;
