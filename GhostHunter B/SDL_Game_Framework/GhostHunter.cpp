@@ -24,13 +24,15 @@ void GhostHunter::setup()
 
 	//create an array of platforms with position
 
-	float coordinates[NBR_PLATFORMS] = {};
+	float fHeight = (float)height;
 
-	for (int i = 0; i < 2; i++)
+	float coordinates[NBR_PLATFORMS][2] = { {100, 700 - mainChar} };
+
+	for (int i = 0; i < NBR_PLATFORMS; i++)
 	{
 		
 		platform[i].sprite.setImage("images/platform.png");
-		platform[i].sprite.set_world_position((float)i * 20.0f, (float)i*i*10.0f);
+		platform[i].sprite.set_world_position(coordinates[i][0], coordinates[i][1]);
 	}
 
 	enableKeyRepeat();
@@ -56,7 +58,7 @@ void GhostHunter::logic()
 		mainChar.setFalling(false);
 	}*/
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < NBR_PLATFORMS; i++)
 	{
 		if (mainChar.m_spriteImage.bb_collision(platform[i].sprite))
 		{
@@ -135,7 +137,7 @@ void GhostHunter::onMouseMoved()
 void GhostHunter::draw(){
 	mainChar.m_spriteImage.update_everything();
 	//draw items from array (KYLE)
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < NBR_PLATFORMS; i++)
 	{
 		platform[i].sprite.update_everything();
 	}

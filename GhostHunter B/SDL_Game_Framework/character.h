@@ -8,21 +8,22 @@ class character :
 public:
 	character();
 	~character();
-	AWSprite getSpriteImage();
-	int getHealth();
-	int getArmor();
-	float getDamage();
-	float getDamageModifier();
-	bool getJumping();
-	bool getFalling();
 
-	void setSpriteImage(char imagePath[]);
-	void setHealth(int health);
-	void setArmor(int armor);
-	void setDamage(float damage);
-	void setDamageModifier(float damageModifier);
-	void setJumping(bool jumping);
-	void setFalling(bool falling);
+	AWSprite getSpriteImage(); //return the sprite
+	int getHealth(); //return the health of the player
+	int getArmor(); //return the armor of the player
+	float getDamage(); //return the base damage of the player (how much damage they do)
+	float getDamageModifier(); //return the damage modifier of the player
+	bool getJumping(); //return is the player jumping
+	bool getFalling(); //return is the player falling
+
+	void setSpriteImage(char imagePath[]); //set the image for the sprite
+	void setHealth(int health); //set the health of the player
+	void setArmor(int armor); //set the armor level of the player
+	void setDamage(float damage); //set the base damage of the player
+	void setDamageModifier(float damageModifier); //set the damage modifier of the player
+	void setJumping(bool jumping); //set if the player is jumping
+	void setFalling(bool falling); //set if the player is falling
 
 	AWSprite m_spriteImage; //image to represent sprite
 
